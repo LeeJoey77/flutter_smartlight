@@ -89,8 +89,16 @@ class _LogInPageState extends State<LogInPage> {
           } else if (_pwController.text.length == 0) {
             CommonUtil.showAlertDialog(context, title: '密码不能为空');
           } else {
-             HttpManager.dataRequest(Address.getLogOutUrl(), 'GET', null);
-            NavigatorUtil.gotoHomePage(context);
+            HttpManager.resultHandle(
+              Address.getLogOutUrl(),
+             'GET',
+             (value){
+               print(value);
+               NavigatorUtil.gotoHomePage(context);
+            },
+            (error) {
+
+            });
           }
         },
       ),
